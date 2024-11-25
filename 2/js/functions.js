@@ -1,19 +1,29 @@
-function stringLenght (inputString, maxLen) {
+function countLength (inputString, maxLen) {
   const amount = inputString.length;
-  if(amount <= maxLen){
-    return true;
-  }else {
-    return false;
-  }
-}
-stringLenght('проверяемая строка', 20);
-function checkPolindrom(stringPolindrom){
-  stringPolindrom = stringPolindrom.toLowerCase();
-  const reverseString = stringPolindrom.split('').reverse().join('');
-  if(stringPolindrom === reverseString){
-    return true;
-  }else{
-    return false;
-  }
+  return amount <= maxLen;
 }
 
+countLength("проверяемая строка", 10);
+
+function checkPalindrom(stringPalindrom){
+  stringPalindrom = stringPalindrom.toLowerCase();
+  stringPalindrom = stringPalindrom.replaceAll(" " , "");
+  const reverseString = stringPalindrom.split("").reverse().join("");
+  return stringPalindrom === reverseString;
+}
+
+checkPalindrom("топот");
+
+function findNumber(inputString) {
+  let result = "";
+  for (let i of inputString) {
+    i = parseInt(i, 10);
+    if(!isNaN(i)) {
+      result = result + i;
+    }
+  }
+  result = result.replaceAll(" " , "");
+  return (parseInt(result, 10));
+}
+
+findNumber("2023 hhh");
