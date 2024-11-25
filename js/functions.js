@@ -7,6 +7,7 @@ countLength("проверяемая строка", 10);
 
 function checkPalindrom(stringPalindrom){
   stringPalindrom = stringPalindrom.toLowerCase();
+  stringPalindrom = stringPalindrom.replaceAll(" " , "");
   const reverseString = stringPalindrom.split("").reverse().join("");
   return stringPalindrom === reverseString;
 }
