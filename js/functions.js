@@ -22,7 +22,6 @@ function findNumber(inputString) {
       result = result + i;
     }
   }
-  result = result.replaceAll(" " , "");
   return (parseInt(result, 10));
 }
 
