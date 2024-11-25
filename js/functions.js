@@ -13,3 +13,17 @@ function checkPalindrom(stringPalindrom){
 }
 
 checkPalindrom("топот");
+
+function findNumber(inputString) {
+  let result = "";
+  for (let i of inputString) {
+    i = parseInt(i, 10);
+    if(!isNaN(i)) {
+      result = result + i;
+    }
+  }
+  result = result.replaceAll(" " , "");
+  return (parseInt(result, 10));
+}
+
+findNumber("2023 hhh");
