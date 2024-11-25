@@ -1,19 +1,18 @@
-function stringLenght (inputString, maxLen) {
+function countLength (inputString, maxLen) {
   const amount = inputString.length;
-  if(amount <= maxLen){
-    return true;
-  }else {
-    return false;
-  }
+  return amount <= maxLen;
+
 }
-stringLenght('проверяемая строка', 20);
-function checkPolindrom(stringPolindrom){
-  stringPolindrom = stringPolindrom.toLowerCase();
-  const reverseString = stringPolindrom.split('').reverse().join('');
-  if(stringPolindrom === reverseString){
-    return true;
-  }else{
-    return false;
-  }
+
+countLength('проверяемая строка', 20);
+countLength('проверяемая строка', 18);
+countLength('проверяемая строка', 10);
+
+function checkPalindrom(stringPalindrom){
+  stringPalindrom = stringPalindrom.toLowerCase();
+  const reverseString = stringPalindrom.split('').reverse().join('');
+  return stringPalindrom === reverseString;
 }
+
+
 
