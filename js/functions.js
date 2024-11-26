@@ -15,6 +15,7 @@ function checkPalindrom(stringPalindrom){
 checkPalindrom("топот");
 
 function findNumber(inputString) {
+  inputString = inputString.toString();
   let result = "";
   for (let i of inputString) {
     i = parseInt(i, 10);
@@ -25,4 +26,4 @@ function findNumber(inputString) {
   return (parseInt(result, 10));
 }
 
-findNumber("2023 hhh");
+console.log(findNumber('22 lalal 1'));
