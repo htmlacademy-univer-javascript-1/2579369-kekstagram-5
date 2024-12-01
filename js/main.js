@@ -35,14 +35,12 @@ const getRandomInteger = (a, b) => {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
-
 const createComment = () => {
-  const randomMessageIndex = getRandomInteger(0, MESSAGES.length - 1);
   const randomNameIndex = getRandomInteger(0, NAMES.length - 1);
   return {
     id:getRandomInteger(0,30),
     avatar:`img/avatar-${ getRandomInteger(1,6) }.svg`,
-    message:MESSAGES[randomMessageIndex],
+    message: Array.from({length:getRandomInteger(1,2)}, () => MESSAGES[getRandomInteger(0, MESSAGES.length - 1)]),
     name: NAMES[randomNameIndex]
   };
 };
