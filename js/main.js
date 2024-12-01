@@ -48,9 +48,11 @@ const createComment = () => {
 };
 
 const createComments = () => {
+  const comments = [];
   for (let i = 0;i < getRandomInteger(0,31);i++){
-    return createComment();
+    comments.push(createComment());
   }
+  return comments;
 };
 const createPost = (elemt,index) =>({
   id:index,
