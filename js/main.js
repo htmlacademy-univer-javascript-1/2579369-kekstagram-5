@@ -37,12 +37,12 @@ const getRandomInteger = (a, b) => {
 };
 
 const createComment = () => {
-  const randomDecscriptionIndex = getRandomInteger(0, DESCRIPTIONS.length - 1);
+  const randomMessageIndex = getRandomInteger(0, MESSAGES.length - 1);
   const randomNameIndex = getRandomInteger(0, NAMES.length - 1);
   return {
     id:getRandomInteger(0,25),
     avatar:`img/avatar-${ getRandomInteger(1,6) }.svg`,
-    message:MESSAGES[randomDecscriptionIndex],
+    message:MESSAGES[randomMessageIndex],
     name: NAMES[randomNameIndex]
   };
 };
