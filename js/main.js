@@ -40,7 +40,7 @@ const createComment = () => {
   const randomMessageIndex = getRandomInteger(0, MESSAGES.length - 1);
   const randomNameIndex = getRandomInteger(0, NAMES.length - 1);
   return {
-    id:getRandomInteger(0,25),
+    id:getRandomInteger(0,30),
     avatar:`img/avatar-${ getRandomInteger(1,6) }.svg`,
     message:MESSAGES[randomMessageIndex],
     name: NAMES[randomNameIndex]
@@ -59,8 +59,7 @@ const createPost = (elemt,index) =>({
   url:`photos/${ index }.jpg`,
   description:DESCRIPTIONS[getRandomInteger(0,DESCRIPTIONS.length - 1)],
   likes:getRandomInteger(15,200),
-  comments:createComments(),
-  avatar:`img/avatar-${ getRandomInteger(1,6) }.svg`,
+  comments:createComments()
 });
 
 
