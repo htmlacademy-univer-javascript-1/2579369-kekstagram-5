@@ -10,7 +10,7 @@ const NAMES = [
   "Марьяна"
 ];
 
-const MESSAGE = [
+const MESSAGES = [
   "Всё отлично!",
   "В целом всё неплохо. Но не всё.",
   "Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.",
@@ -19,7 +19,7 @@ const MESSAGE = [
   "Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!"
 ];
 
-const DESCRIPTION = [
+const DESCRIPTIONS = [
   "на чилле, на раслабоне!",
   "Анапа 2024",
   "Дача, шашлыки, что еще нужно для счастья?",
@@ -35,30 +35,29 @@ const getRandomInteger = (a, b) => {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
-
 const createComment = () => {
-  const randomDecscriptionIndex = getRandomInteger(0, DESCRIPTION.length - 1);
   const randomNameIndex = getRandomInteger(0, NAMES.length - 1);
   return {
-    id:getRandomInteger(0,25),
+    id:getRandomInteger(0,30),
     avatar:`img/avatar-${ getRandomInteger(1,6) }.svg`,
-    message:MESSAGE[randomDecscriptionIndex],
+    message: Array.from({length:getRandomInteger(1,2)}, () => MESSAGES[getRandomInteger(0, MESSAGES.length - 1)]),
     name: NAMES[randomNameIndex]
   };
 };
 
 const createComments = () => {
+  const comments = [];
   for (let i = 0;i < getRandomInteger(0,31);i++){
-    return createComment();
+    comments.push(createComment());
   }
+  return comments;
 };
 const createPost = (elemt,index) =>({
   id:index,
   url:`photos/${ index }.jpg`,
-  description:DESCRIPTION[getRandomInteger(0,DESCRIPTION.length - 1)],
+  description:DESCRIPTIONS[getRandomInteger(0,DESCRIPTIONS.length - 1)],
   likes:getRandomInteger(15,200),
-  comments:createComments(),
-  avatar:`img/avatar-${ getRandomInteger(1,6) }.svg`,
+  comments:createComments()
 });
 
 
