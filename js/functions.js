@@ -26,4 +26,4 @@ function findNumber(inputString) {
   return (parseInt(result, 10));
 }
 
-console.log(findNumber('22 lalal 1'));
+
