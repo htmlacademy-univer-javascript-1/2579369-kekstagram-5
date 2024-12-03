@@ -26,4 +26,10 @@ function findNumber(inputString) {
   return (parseInt(result, 10));
 }
 
-
+function checkTime (timeStart,timeEnd,beginingTime,duration){
+  timeStart = timeStart.split(":");
+  timeEnd = timeEnd.split(":");
+  beginingTime = beginingTime.split(":");
+  const workingDayHours = parseInt(timeEnd[0],10) - parseInt(timeStart[0],10);
+  const workingDayMinutes = workingDayHours * 60 + parseInt(timeEnd[1],10);
+}
