@@ -1,5 +1,5 @@
-import {getRandomInteger} from './util.js';
-import {POST_COUNT,NAMES,MESSAGES,DESCRIPTIONS} from'./constants.js';
+import {getRandomInteger} from "./util.js";
+import {NAMES,MESSAGES,DESCRIPTIONS} from"./constants.js";
 
 const createComment = () => {
   const randomNameIndex = getRandomInteger(0, NAMES.length - 1);
@@ -25,8 +25,4 @@ const createPost = (elemt,index) =>({
   likes:getRandomInteger(15,200),
   comments:createComments()
 });
-
-
-const posts = Array.from({length:POST_COUNT},createPost);
-console.log(posts);
-export{posts};
+export{createPost};
