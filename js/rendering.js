@@ -10,14 +10,15 @@ function renderPosts () {
   const fragment = document.createDocumentFragment();
 
   posts.forEach((post)=>{
+    const [url,description,likes,comments] = post;
     const postsElement = pictureTemplate.cloneNode(true);
     const pictureImg = postsElement.querySelector(".picture__img");
-    pictureImg.src = post.url;
-    pictureImg.alt = post.description;
+    pictureImg.src = url;
+    pictureImg.alt = description;
     const photolikes = postsElement.querySelector(".picture__likes");
-    photolikes.textContent = post.likes;
+    photolikes.textContent = likes;
     const pictureComments = postsElement.querySelector(".picture__comments");
-    pictureComments.textContent = post.comments.length;
+    pictureComments.textContent = comments.length;
     fragment.appendChild(postsElement);
   });
   picturesContainer.appendChild(fragment);
