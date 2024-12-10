@@ -3,10 +3,10 @@ import {POST_COUNT} from "./constants.js";
 
 const posts = Array.from({length:POST_COUNT},createPost);
 
-const pictureTemplate = document.querySelector("#picture").content;
-const picturesContainer = document.querySelector(".pictures");
 function renderPosts () {
 
+  const pictureTemplate = document.querySelector("#picture").content;
+  const picturesContainer = document.querySelector(".pictures");
   const fragment = document.createDocumentFragment();
 
   posts.forEach((post)=>{
