@@ -20,7 +20,7 @@ const createComments = () => {
 };
 const createPost = (elemt,index) =>({
   id:index,
-  url:`photos/${ index }.jpg`,
+  url:`photos/${ index + 1 }.jpg`,
   description:DESCRIPTIONS[getRandomInteger(0,DESCRIPTIONS.length - 1)],
   likes:getRandomInteger(15,200),
   comments:createComments()
