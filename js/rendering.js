@@ -10,7 +10,7 @@ function renderPosts () {
   const fragment = document.createDocumentFragment();
 
   posts.forEach((post)=>{
-    const [url,description,likes,comments] = post;
+    const {url,description,likes,comments} = post;
     const postsElement = pictureTemplate.cloneNode(true);
     const pictureImg = postsElement.querySelector(".picture__img");
     pictureImg.src = url;
