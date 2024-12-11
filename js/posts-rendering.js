@@ -11,6 +11,8 @@ function renderPosts () {
 
   posts.forEach((post)=>{
     const {url,description,likes,comments} = post;
+    const bigPictures = document.querySelector(".big-picture");
+    const postsElementDiv = document.createElement("div");
     const postsElement = pictureTemplate.cloneNode(true);
     const pictureImg = postsElement.querySelector(".picture__img");
     pictureImg.src = url;
@@ -19,9 +21,13 @@ function renderPosts () {
     photolikes.textContent = likes;
     const pictureComments = postsElement.querySelector(".picture__comments");
     pictureComments.textContent = comments.length;
-    fragment.appendChild(postsElement);
+    postsElementDiv.appendChild(postsElement);
+    fragment.appendChild(postsElementDiv);
+    postsElementDiv.addEventListener("click", () => {
+      bigPictures.classList.remove("hidden");
+    });
   });
   picturesContainer.appendChild(fragment);
 }
-export {renderPosts};
+export {renderPosts,posts};
 
