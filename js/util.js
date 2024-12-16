@@ -6,4 +6,8 @@ const getRandomInteger = (a, b) => {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
-export {getRandomInteger};
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const isEnterKey = (evt) => evt.key === 'Enter';
+export {getRandomInteger, isEnterKey , isEscapeKey};
