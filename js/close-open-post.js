@@ -27,13 +27,13 @@ function defineBigPicture(post){
   commentsCount.textContent = comments.length;
   socialCaption.textContent = description;
   comments.forEach((comment)=>{
-    // if (comment){
-    const avatar = comment.querySelector('.social__picture');
-    const text = comment.querySelector('.social__text');
-    avatar.src = comments.avatar;
-    avatar.alt = comments.name;
-    text.textContent = comment.message;
-
+    if (comment){
+      const avatar = comment.querySelector('.social__picture');
+      const text = comment.querySelector('.social__text');
+      avatar.src = comments.avatar;
+      avatar.alt = comments.name;
+      text.textContent = comment.message;
+    }
   });
 }
 closePosts();
