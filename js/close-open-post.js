@@ -38,7 +38,7 @@ function defineBigPicture(post){
     commentText.classList.add("social__text");
     commentImg.src = comment.avatar;
     commentImg.alt = comment.name;
-    commentItem.textContent = comment.message;
+    commentText.textContent = comment.message;
     commentItem.appendChild(commentImg);
     commentItem.appendChild(commentText);
     socialComments.appendChild(commentItem);
