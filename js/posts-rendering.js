@@ -12,8 +12,6 @@ function renderPosts () {
 
   posts.forEach((post)=>{
     const {url,description,likes,comments} = post;
-    const socialCommentCount = bigPicture.querySelector(".social__comment-count");
-    const commentsLoader = bigPicture.querySelector(".comments-loader");
     const postsElementDiv = document.createElement("div");
     const postsElement = pictureTemplate.cloneNode(true);
     const pictureImg = postsElement.querySelector(".picture__img");
@@ -27,8 +25,6 @@ function renderPosts () {
     fragment.appendChild(postsElementDiv);
     postsElementDiv.addEventListener("click", () => {
       bigPicture.classList.remove("hidden");
-      socialCommentCount.classList.add("hidden");
-      commentsLoader.classList.add("hidden");
       body.classList.add("modal-open");
       defineBigPicture(post);
     });
