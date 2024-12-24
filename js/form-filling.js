@@ -116,9 +116,11 @@ function openError (){
 
   document.body.append(errorElement);
 
+
   errorButton.addEventListener("click", closeError);
   document.addEventListener("keydown", closeErrorEscape);
   document.addEventListener("click", closeOutside);
+  document.removeEventListener("click",closeForm);
 
   function closeError(){
     errorElement.remove();
@@ -130,7 +132,8 @@ function openError (){
     if(isEscapeKey(evt)) {
       evt.preventDefault();
       closeError();
-      document.removeEventListener("click",closeForm);
+      imgOverlay.classList.remove("hidden");
+      body.classList.add("modal-open");
     }
 
   }
