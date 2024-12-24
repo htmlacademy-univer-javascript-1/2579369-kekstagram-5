@@ -16,12 +16,6 @@ imgInput.addEventListener("change", (evt) => {
   imgOverlay.classList.remove("hidden");
   body.classList.add("modal-open");
   pristine.validate();
-  const isValid = pristine.validate();
-  if (isValid) {
-    console.log("Можно отправлять");
-  } else {
-    console.log("Форма невалидна");
-  }
 });
 
 function validateHastags (value) {
