@@ -155,8 +155,6 @@ function openError (){
   }
 }
 
-
-
 function closeForm(){
   imgOverlay.classList.add("hidden");
   body.classList.remove("modal-open");
