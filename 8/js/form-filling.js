@@ -16,13 +16,27 @@ imgInput.addEventListener("change", (evt) => {
   imgOverlay.classList.remove("hidden");
   body.classList.add("modal-open");
   pristine.validate();
+  closeFormClick();
+  // eslint-disable-next-line no-shadow
+  postForm.addEventListener("submit",(evt) => {
+    evt.preventDefault();
+    formButton.disabled = true;
+    if(pristine.validate()){
+      openSuccess();
+    }else {
+      openError();
+    }
+    formButton.disabled = false;
+  });
 });
 
-function validateHastags (value) {
-  const hashtags = value.trim().split(" ");
-  if (value.trim() === "") {
+function validateHashtags (value) {
+  const valueTrim = value.trim();
+  const hashtags = valueTrim.split(" ");
+  if (valueTrim === "") {
     return true;
   }
+  pristine.errorText = "введён невалидный хэш-тег";
   return hashtags.every((hashtag) => regexp.test(hashtag));
 }
 function validateComment (value) {
@@ -31,30 +45,36 @@ function validateComment (value) {
   }
   return value.length <= 140;
 }
+const hastags = document.querySelector(".text__hashtags");
+const postText = document.querySelector(".text__description");
 
 function dublicateHashtags(value) {
   const hashtags = value.trim().split(" ");
   for (let i = 0; i < hashtags.length; i++){
     const hashtag = hashtags[i].toLowerCase();
     if (hashtags.slice(0, i).includes(hashtag)) {
+      pristine.errorText = "хэш-теги повторяются";
       return false;
     }
   }
   return true;
 }
 
-const hastags = document.querySelector(".text__hashtags");
-const postText = document.querySelector(".text__description");
 pristine.addValidator(
   hastags,
-  validateHastags,
-  "введён невалидный хэш-тег"
+  (value) => {
+    if (!validateHashtags(value)) {
+      return false;
+    }
+    if (!dublicateHashtags(value)) {
+      return false;
+    }
+
+    return true;
+  },
+  () => pristine.errorText
 );
-pristine.addValidator(
-  hastags,
-  dublicateHashtags,
-  "хэш-теги повторяются"
-);
+
 pristine.addValidator(
   postText,
   validateComment,
@@ -88,15 +108,12 @@ function openSuccess (){
     if(isEscapeKey(evt)) {
       evt.preventDefault();
       closeSuccess();
-      closeForm();
     }
 
   }
   function closeOutside(evt){
     if (!successInner.contains(evt.target)){
       closeSuccess();
-      imgOverlay.classList.add("hidden");
-      body.classList.remove("modal-open");
     }
   }
 }
@@ -138,31 +155,21 @@ function openError (){
   }
 }
 
-
-postForm.addEventListener("submit",(evt) => {
-  evt.preventDefault();
-  formButton.disabled = true;
-  if(pristine.validate()){
-    openSuccess();
-    formButton.disabled = false;
-  }else {
-    openError();
-    formButton.disabled = false;
-  }
-
-});
 function closeForm(){
-  closeImg.addEventListener("click", () => {
-    imgOverlay.classList.add("hidden");
-    body.classList.remove("modal-open");
-  });
+  imgOverlay.classList.add("hidden");
+  body.classList.remove("modal-open");
+  postForm.reset();
+  document.removeEventListener(closeFormClick);
+}
+
+function closeFormClick (){
+  closeImg.addEventListener("click",closeForm);
   document.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
+    if (isEscapeKey(evt)) {
       evt.preventDefault();
-      imgOverlay.classList.add("hidden");
-      body.classList.remove("modal-open");
+      closeForm();
     }
   });
 }
-closeForm();
+
 
