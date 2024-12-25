@@ -18,12 +18,13 @@ imgInput.addEventListener("change", (evt) => {
   pristine.validate();
 });
 
-function validateHastags (value) {
+function validateHashtags (value) {
   const valueTrim = value.trim();
   const hashtags = valueTrim.split(" ");
   if (valueTrim === "") {
     return true;
   }
+  pristine.errorText = "введён невалидный хэш-тег";
   return hashtags.every((hashtag) => regexp.test(hashtag));
 }
 function validateComment (value) {
@@ -40,6 +41,7 @@ function dublicateHashtags(value) {
   for (let i = 0; i < hashtags.length; i++){
     const hashtag = hashtags[i].toLowerCase();
     if (hashtags.slice(0, i).includes(hashtag)) {
+      pristine.errorText = "хэш-теги повторяются";
       return false;
     }
   }
@@ -48,18 +50,27 @@ function dublicateHashtags(value) {
 
 pristine.addValidator(
   hastags,
-  validateHastags,
-  "введён невалидный хэш-тег",
-  1
+  (value) => {
+    if (!validateHashtags(value)) {
+      return false;
+    }
+    if (!dublicateHashtags(value)) {
+      return false;
+    }
+
+    return true;
+  },
+  () => pristine.errorText
 );
-if(pristine.validate){
-  pristine.addValidator(
-    hastags,
-    dublicateHashtags,
-    "хэш-теги повторяются",
-    2
-  );
-}
+
+// if(pristine.validate){
+//   pristine.addValidator(
+//     hastags,
+//     dublicateHashtags,
+//     "хэш-теги повторяются",
+//     2
+//   );
+// }
 pristine.addValidator(
   postText,
   validateComment,
