@@ -19,8 +19,9 @@ imgInput.addEventListener("change", (evt) => {
 });
 
 function validateHastags (value) {
-  const hashtags = value.trim().split(" ");
-  if (value.trim() === "") {
+  const valueTrim = value.trim();
+  const hashtags = valueTrim.split(" ");
+  if (valueTrim === "") {
     return true;
   }
   return hashtags.every((hashtag) => regexp.test(hashtag));
