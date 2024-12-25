@@ -152,17 +152,20 @@ postForm.addEventListener("submit",(evt) => {
 
 });
 function closeForm(){
-  closeImg.addEventListener("click", () => {
-    imgOverlay.classList.add("hidden");
-    body.classList.remove("modal-open");
-  });
+  imgOverlay.classList.add("hidden");
+  body.classList.remove("modal-open");
+  postForm.reset();
+  document.removeEventListener(closeFormClick);
+}
+
+function closeFormClick (){
+  closeImg.addEventListener("click",closeForm);
   document.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
+    if (isEscapeKey(evt)) {
       evt.preventDefault();
-      imgOverlay.classList.add("hidden");
-      body.classList.remove("modal-open");
+      closeForm();
     }
   });
 }
-closeForm();
+closeFormClick();
 
