@@ -16,6 +16,18 @@ imgInput.addEventListener("change", (evt) => {
   imgOverlay.classList.remove("hidden");
   body.classList.add("modal-open");
   pristine.validate();
+  closeFormClick();
+  // eslint-disable-next-line no-shadow
+  postForm.addEventListener("submit",(evt) => {
+    evt.preventDefault();
+    formButton.disabled = true;
+    if(pristine.validate()){
+      openSuccess();
+    }else {
+      openError();
+    }
+    formButton.disabled = false;
+  });
 });
 
 function validateHashtags (value) {
@@ -144,16 +156,7 @@ function openError (){
 }
 
 
-postForm.addEventListener("submit",(evt) => {
-  evt.preventDefault();
-  formButton.disabled = true;
-  if(pristine.validate()){
-    openSuccess();
-  }else {
-    openError();
-  }
-  formButton.disabled = false;
-});
+
 function closeForm(){
   imgOverlay.classList.add("hidden");
   body.classList.remove("modal-open");
@@ -170,5 +173,5 @@ function closeFormClick (){
     }
   });
 }
-closeFormClick();
+
 
