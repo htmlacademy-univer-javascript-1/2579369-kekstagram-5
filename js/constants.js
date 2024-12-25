@@ -27,4 +27,10 @@ const DESCRIPTIONS = [
   "В качалке с друзьями",
   "Гламур"
 ];
-export {POST_COUNT,NAMES,MESSAGES,DESCRIPTIONS};
+const FILE_TYPES = [
+  "jpg",
+  "jpeg",
+  "png"
+];
+export {POST_COUNT,NAMES,MESSAGES,DESCRIPTIONS, FILE_TYPES};
+
