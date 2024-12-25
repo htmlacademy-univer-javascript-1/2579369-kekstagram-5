@@ -32,6 +32,8 @@ function validateComment (value) {
   }
   return value.length <= 140;
 }
+const hastags = document.querySelector(".text__hashtags");
+const postText = document.querySelector(".text__description");
 
 function dublicateHashtags(value) {
   const hashtags = value.trim().split(" ");
@@ -44,18 +46,20 @@ function dublicateHashtags(value) {
   return true;
 }
 
-const hastags = document.querySelector(".text__hashtags");
-const postText = document.querySelector(".text__description");
 pristine.addValidator(
   hastags,
   validateHastags,
-  "введён невалидный хэш-тег"
+  "введён невалидный хэш-тег",
+  1
 );
-pristine.addValidator(
-  hastags,
-  dublicateHashtags,
-  "хэш-теги повторяются"
-);
+if(pristine.validate){
+  pristine.addValidator(
+    hastags,
+    dublicateHashtags,
+    "хэш-теги повторяются",
+    2
+  );
+}
 pristine.addValidator(
   postText,
   validateComment,
@@ -89,15 +93,12 @@ function openSuccess (){
     if(isEscapeKey(evt)) {
       evt.preventDefault();
       closeSuccess();
-      closeForm();
     }
 
   }
   function closeOutside(evt){
     if (!successInner.contains(evt.target)){
       closeSuccess();
-      imgOverlay.classList.add("hidden");
-      body.classList.remove("modal-open");
     }
   }
 }
@@ -145,12 +146,10 @@ postForm.addEventListener("submit",(evt) => {
   formButton.disabled = true;
   if(pristine.validate()){
     openSuccess();
-    formButton.disabled = false;
   }else {
     openError();
-    formButton.disabled = false;
   }
-
+  formButton.disabled = false;
 });
 function closeForm(){
   imgOverlay.classList.add("hidden");
