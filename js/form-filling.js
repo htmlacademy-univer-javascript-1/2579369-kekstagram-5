@@ -63,14 +63,6 @@ pristine.addValidator(
   () => pristine.errorText
 );
 
-// if(pristine.validate){
-//   pristine.addValidator(
-//     hastags,
-//     dublicateHashtags,
-//     "хэш-теги повторяются",
-//     2
-//   );
-// }
 pristine.addValidator(
   postText,
   validateComment,
