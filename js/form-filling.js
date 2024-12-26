@@ -1,4 +1,6 @@
 import {isEscapeKey} from"./util.js";
+import {sendData} from "./interact-with-data.js";
+import {showAlert} from "./data-error.js";
 const imgInput = document.querySelector(".img-upload__input");
 const body = document.body;
 const imgOverlay = document.querySelector(".img-upload__overlay");
@@ -23,6 +25,8 @@ imgInput.addEventListener("change", (evt) => {
     formButton.disabled = true;
     if(pristine.validate()){
       openSuccess();
+      const formData = new FormData(evt.target);
+      sendData(showAlert,formData);
     }else {
       openError();
     }

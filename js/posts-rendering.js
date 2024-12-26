@@ -1,10 +1,6 @@
-import {createPost} from "./data.js";
-import {POST_COUNT} from "./constants.js";
 import {defineBigPicture, bigPicture, body} from "./close-open-post.js";
 
-const posts = Array.from({length:POST_COUNT},createPost);
-
-function renderPosts () {
+function renderPosts (posts) {
 
   const pictureTemplate = document.querySelector("#picture").content;
   const picturesContainer = document.querySelector(".pictures");
@@ -31,5 +27,5 @@ function renderPosts () {
   });
   picturesContainer.appendChild(fragment);
 }
-export {renderPosts,posts};
+export {renderPosts};
 
