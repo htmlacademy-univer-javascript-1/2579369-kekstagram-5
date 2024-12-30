@@ -21,21 +21,21 @@ const getData = (onSuccess, onError) => () =>
       onError("Не удалось загрузить данные. Попробуйте ещё раз");
     });
 
-const sendData = (onError,formData) => () =>
+const sendData = (onError,body,onSuccess) => () =>
   fetch (
     "https://29.javascript.htmlacademy.pro/kekstagram",
     {
       method: "POST",
-      credentials: "same-origin",
-      body: formData,
+      body,
     },
   )
     .then((response) => {
       if (!response.ok) {
-        throw new Error();
+        throw new Error("Не удалось отправить форму. Попробуйте ещё раз");
       }
+      onSuccess();
     })
     .catch(() => {
-      onError("Не удалось отправить данные. Попробуйте ещё раз");
+      onError("Не удалось отправить форму. Попробуйте ещё раз");
     });
 export{getData,sendData};
