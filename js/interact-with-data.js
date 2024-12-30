@@ -6,17 +6,14 @@ const getData = (onSuccess, onError) => () =>
       credentials: "same-origin",
     },
   )
-    .then((response) => {
+    .then((response, data) => {
       if (response.ok) {
         return response.json();
       }else{
         onError("Не удалось загрузить данные. Попробуйте ещё раз");
       }
-
-      throw new Error(`${response.status} ${response.statusText}`);
-    })
-    .then((data) => {
       onSuccess(data);
+
     })
     .catch(() => {
       onError("Не удалось загрузить данные. Попробуйте ещё раз");
