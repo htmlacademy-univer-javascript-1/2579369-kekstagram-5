@@ -24,9 +24,8 @@ imgInput.addEventListener("change", (evt) => {
     evt.preventDefault();
     formButton.disabled = true;
     if(pristine.validate()){
-      openSuccess();
       const formData = new FormData(evt.target);
-      sendData(showAlert,formData);
+      sendData(showAlert,formData,openSuccess)();
     }else {
       openError();
     }
