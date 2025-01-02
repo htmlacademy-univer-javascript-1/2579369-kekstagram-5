@@ -94,6 +94,7 @@ function openSuccess (){
   document.body.append(successElement);
   hastags.value = "";
   postText.value = "";
+  imgInput.value = "";
 
   successButton.addEventListener("click", closeSuccess);
   document.addEventListener("keydown", closeSuccessEscape);
@@ -162,17 +163,18 @@ function closeForm(){
   imgOverlay.classList.add("hidden");
   body.classList.remove("modal-open");
   postForm.reset();
-  document.removeEventListener(closeFormClick);
+  closeImg.removeEventListener("click", closeForm);
+  document.removeEventListener("keydown", closeFormEscape);
 }
 
 function closeFormClick (){
   closeImg.addEventListener("click",closeForm);
-  document.addEventListener("keydown", (evt) => {
-    if (isEscapeKey(evt)) {
-      evt.preventDefault();
-      closeForm();
-    }
-  });
+  document.addEventListener("keydown", closeFormEscape);
 }
 
-
+function closeFormEscape(evt) {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeForm();
+  }
+}
