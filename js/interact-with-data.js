@@ -41,5 +41,5 @@ const sendData = (onError,body,onSuccess) => () =>
       onError("Не удалось отправить форму. Попробуйте ещё раз");
     });
 
-const getPostsFromServer = getData(renderPosts, showAlert)();
+const getPostsFromServer = getData(renderPosts, showAlert);
 export{getPostsFromServer,sendData};

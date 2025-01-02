@@ -1,6 +1,5 @@
 import {isEscapeKey} from"./util.js";
 import {sendData} from "./interact-with-data.js";
-import {showAlert} from "./data-error.js";
 const imgInput = document.querySelector(".img-upload__input");
 const body = document.body;
 const imgOverlay = document.querySelector(".img-upload__overlay");
@@ -13,24 +12,33 @@ const pristine = new Pristine(postForm, {
 });
 const regexp = /^#[^\s#]+$/i;
 
+const sendDataFromForm = () => {
+  postForm.addEventListener("submit",(evt) => {
+    evt.preventDefault();
+    formButton.disabled = true;
+    if(pristine.validate()){
+      sendData(
+        openError,
+        new FormData(evt.target),
+        () => {
+          openSuccess();
+          postForm.reset();
+        })();
+    }else {
+      openError();
+    }
+    formButton.disabled = false;
+  });
+};
+
+
 imgInput.addEventListener("change", (evt) => {
   evt.preventDefault();
   imgOverlay.classList.remove("hidden");
   body.classList.add("modal-open");
   pristine.validate();
   closeFormClick();
-  // eslint-disable-next-line no-shadow
-  postForm.addEventListener("submit",(evt) => {
-    evt.preventDefault();
-    formButton.disabled = true;
-    if(pristine.validate()){
-      const formData = new FormData(evt.target);
-      sendData(showAlert,formData,openSuccess)();
-    }else {
-      openError();
-    }
-    formButton.disabled = false;
-  });
+  formButton.disabled = false;
 });
 
 function validateHashtags (value) {
@@ -178,3 +186,5 @@ function closeFormEscape(evt) {
     closeForm();
   }
 }
+
+export {sendDataFromForm};
