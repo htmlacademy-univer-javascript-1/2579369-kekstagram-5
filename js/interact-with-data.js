@@ -35,11 +35,9 @@ const sendData = (onError,body,onSuccess) => () =>
       if (!response.ok) {
         throw new Error("Не удалось отправить форму. Попробуйте ещё раз");
       }
-      onSuccess();
+      return onSuccess();
     })
-    .catch(() => {
-      onError("Не удалось отправить форму. Попробуйте ещё раз");
-    });
+    .catch(onError);
 
 const getPostsFromServer = getData(renderPosts, showAlert);
 export{getPostsFromServer,sendData};
