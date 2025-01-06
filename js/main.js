@@ -1,5 +1,6 @@
-import {renderPosts} from"./posts-rendering.js";
-import "./form-filling.js";
 import {loadPhoto} from "./photo-load.js";
-renderPosts();
+import {getPostsFromServer} from "./interact-with-data.js";
+import {sendDataFromForm} from "./form-filling.js";
 loadPhoto();
+getPostsFromServer();
+sendDataFromForm();
