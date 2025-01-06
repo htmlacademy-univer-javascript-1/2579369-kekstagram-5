@@ -1,3 +1,5 @@
+import {renderPosts} from"./posts-rendering.js";
+import {showAlert} from "./data-error.js";
 const getData = (onSuccess, onError) => () =>
   fetch(
     "https://29.javascript.htmlacademy.pro/kekstagram/data",
@@ -33,9 +35,9 @@ const sendData = (onError,body,onSuccess) => () =>
       if (!response.ok) {
         throw new Error("Не удалось отправить форму. Попробуйте ещё раз");
       }
-      onSuccess();
+      return onSuccess();
     })
-    .catch(() => {
-      onError("Не удалось отправить форму. Попробуйте ещё раз");
-    });
-export{getData,sendData};
+    .catch(onError);
+
+const getPostsFromServer = getData(renderPosts, showAlert);
+export{getPostsFromServer,sendData};
